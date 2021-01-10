@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/data/data.dart';
 import 'package:food_app/models/restaurant.dart';
+import 'package:food_app/screens/restaurantpage.dart';
 import 'package:food_app/widgets/ratingstarts.dart';
 import 'package:food_app/widgets/recentorder.dart';
 
@@ -14,72 +15,76 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Widget> restaurentsList = [];
     restaurants.forEach((Restaurant restaurant) {
       restaurentsList.add(
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15.0),
-            border: Border.all(
-              color: Colors.grey[200],
-              width: 1.0,
+        GestureDetector(
+          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_)=> RestaurentScreen(restaurant: restaurant),),),
+            
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15.0),
+              border: Border.all(
+                color: Colors.grey[200],
+                width: 1.0,
+              ),
             ),
-          ),
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: Image(
-                  image: AssetImage(restaurant.imageUrl),
-                  height: 150.0,
-                  width: 150.0,
-                  fit: BoxFit.cover,
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Image(
+                    image: AssetImage(restaurant.imageUrl),
+                    height: 150.0,
+                    width: 150.0,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      restaurant.name,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                Container(
+                  margin: EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        restaurant.name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(
-                      height: 4.0,
-                    ),
-                    RatingStars(restaurant.rating),
+                      SizedBox(
+                        height: 4.0,
+                      ),
+                      RatingStars(restaurant.rating),
 
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Text(
-                      restaurant.address,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                      SizedBox(
+                        height: 6.0,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(
-                      height: 4.0,
-                    ),
-                    Text(
-                      '0.2 miles away',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                      Text(
+                        restaurant.address,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    )
-                  ],
+                      SizedBox(
+                        height: 4.0,
+                      ),
+                      Text(
+                        '0.2 miles away',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );
