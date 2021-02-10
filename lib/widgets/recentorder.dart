@@ -8,9 +8,10 @@ class RecentOrders extends StatelessWidget {
       margin: EdgeInsets.all(10.0),
       width: 320.0,
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15.0),
-          border: Border.all(width: 1.0, color: Colors.grey[200])),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15.0),
+        border: Border.all(width: 1.0, color: Colors.grey[200]),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
